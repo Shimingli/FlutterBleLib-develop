@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_ble_lib/flutter_ble_lib.dart';
 
 class BleDevice {
+  // lib 中的类
   final Peripheral peripheral;
   final String name;
   final DeviceCategory category;

@@ -1,8 +1,12 @@
 part of flutter_ble_lib;
 
+
 /// Callback used to inform about peripherals restored by the system.
 ///
 /// iOS-specific.
+/// /// 回调用于通知系统恢复的外围设备。
+// ///
+// /// iOS 特定的。
 typedef RestoreStateAction = Function(List<Peripheral> peripherals);
 
 /// Level of details library is to output in logs.
@@ -51,6 +55,7 @@ abstract class BleManager {
   /// normally, eg. writing to
   /// characteristic, but you can dismiss awaiting for the result if,
   /// for example, the result is no longer useful due to user's actions.
+  ///
   Future<void> cancelTransaction(String transactionId);
 
   /// Checks whether the native client exists.

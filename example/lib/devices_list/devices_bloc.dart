@@ -124,6 +124,7 @@ class DevicesBloc {
   }
 
   void _startScan() {
+
     Fimber.d("Ble start scan");
     _scanSubscription = _bleManager.startPeripheralScan()
       .listen((scanResult) {

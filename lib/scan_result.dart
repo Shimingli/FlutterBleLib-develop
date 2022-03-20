@@ -19,7 +19,7 @@ class ScanResult {
   /// Signal strength of the peripheral in dBm.
   final int rssi;
 
-  /// An indicator whether the peripheral is connectable (iOS only).
+  /// An indicator whether the peripheral is connectable (iOS only).范德萨答复
   final bool? isConnectable;
 
   /// A list of UUIDs found in the overflow area of the advertisement data (iOS only).

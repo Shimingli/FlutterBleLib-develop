@@ -47,6 +47,7 @@ class Peripheral {
   /// is established right after timeout event, peripheral will be disconnected
   /// immediately. Timeout may happen earlier than specified due to OS
   /// specific behavior.
+  ///
   Future<void> connect(
           {bool isAutoConnect = false,
           int requestMtu = NO_MTU_NEGOTIATION,

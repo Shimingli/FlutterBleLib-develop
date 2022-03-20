@@ -17,6 +17,7 @@ import '_managers_for_classes.dart';
 
 part 'base_entities.dart';
 
+
 part 'internal_ble_manager.dart';
 
 part 'bridge/bluetooth_state_mixin.dart';

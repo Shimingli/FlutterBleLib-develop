@@ -3,6 +3,7 @@ import 'package:flutter_ble_lib_example/device_details/device_details_bloc.dart'
 import 'package:flutter_ble_lib_example/device_details/view/button_view.dart';
 import 'package:flutter_ble_lib_example/device_details/view/logs_container_view.dart';
 
+
 class AutoTestView extends StatelessWidget {
   final DeviceDetailsBloc _deviceDetailsBloc;
 

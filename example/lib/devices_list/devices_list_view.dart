@@ -21,6 +21,35 @@ class DeviceListScreenState extends State<DevicesListScreen> {
   StreamSubscription<BleDevice>? _appStateSubscription;
   bool _shouldRunOnResume = true;
 
+  //当widget 第一次插入到wigdet 树的时候，就会调用，但是对于每一个 state对象来说，只会调用一次
+  //initState：当 widget 第一次插入到 widget 树时会被调用，对于每一个State对象，Flutter
+  // 框架只会调用一次该回调，所以，通常在该回调中做一些一次性的操作，如状态初始化、订阅子树的事件通知等。
+  // 不能在该回调中调用BuildContext.dependOnInheritedWidgetOfExactType（该方法用于在 widget
+  // 树上获取离当前 widget 最近的一个父级InheritedWidget，关于InheritedWidget我们将在后面章节介绍），
+  // 原因是在初始化完成后， widget 树中的InheritFrom widget也可能会发生变化，所以正确的做法应该在在build（）
+  // 方法或didChangeDependencies()中调用它。
+  @override
+  void initState() {
+    Fimber.d("initState 第一次插入到wigdet 树的时候， ");
+    super.initState();
+  }
+
+  //在 initState的喉，立刻调用，当 inher itedwidget rebuild 喉，也会调用
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    //这里是开始执行 1
+    Fimber.d(" didChangeDependencies 在 initState的喉，立刻调用， ");
+    if (_devicesBloc == null) {
+      _devicesBloc = DevicesBlocProvider.of(context);
+      Fimber.d("获取到了数据  2 ");
+      if (_shouldRunOnResume) {
+        _shouldRunOnResume = false;
+        _onResume();
+      }
+    }
+  }
+
   @override
   void didUpdateWidget(DevicesListScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -35,6 +64,7 @@ class DeviceListScreenState extends State<DevicesListScreen> {
 
   void _onResume() {
     Fimber.d("onResume");
+
     final devicesBloc = _devicesBloc;
     if (devicesBloc == null) {
       Fimber.d("onResume:: no devicesBloc present");
@@ -44,6 +74,7 @@ class DeviceListScreenState extends State<DevicesListScreen> {
     _appStateSubscription = devicesBloc.pickedDevice.listen((bleDevice) async {
       Fimber.d("navigate to details");
       _onPause();
+      //点击时间去到得 details
       await Navigator.pushNamed(context, "/details");
       setState(() {
         _shouldRunOnResume = true;
@@ -52,22 +83,11 @@ class DeviceListScreenState extends State<DevicesListScreen> {
     });
   }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    Fimber.d("DeviceListScreenState didChangeDependencies");
-    if (_devicesBloc == null) {
-      _devicesBloc = DevicesBlocProvider.of(context);
-      if (_shouldRunOnResume) {
-        _shouldRunOnResume = false;
-        _onResume();
-      }
-    }
-  }
-
+  // 绘制界面，当setState喉 会被调用
   @override
   Widget build(BuildContext context) {
-    Fimber.d("build DeviceListScreenState");
+    //这里是开始执行 2
+    Fimber.d("build DeviceListScreenState" + _shouldRunOnResume.toString());
     if (_shouldRunOnResume) {
       _shouldRunOnResume = false;
       _onResume();
@@ -81,10 +101,11 @@ class DeviceListScreenState extends State<DevicesListScreen> {
         title: Text('Bluetooth devices'),
       ),
       body: StreamBuilder<List<BleDevice>>(
-        initialData: devicesBloc.visibleDevices.valueWrapper?.value ?? <BleDevice>[],
+        initialData:
+            devicesBloc.visibleDevices.valueWrapper?.value ?? <BleDevice>[],
         stream: devicesBloc.visibleDevices,
         builder: (context, snapshot) => RefreshIndicator(
-          onRefresh: devicesBloc.refresh ,
+          onRefresh: devicesBloc.refresh,
           child: DevicesList(devicesBloc, snapshot.data),
         ),
       ),
