@@ -5,6 +5,7 @@ mixin DeviceConnectionMixin on FlutterBLE {
       const EventChannel(ChannelName.connectionStateChangeEvents)
           .receiveBroadcastStream();
 
+
   Future<void> connectToPeripheral(
     String deviceIdentifier, 
     bool isAutoConnect,

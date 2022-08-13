@@ -18,6 +18,7 @@ public class MultiCharacteristicsResponseJsonConverter implements JsonConverter<
     public String toJson(MultiCharacteristicsResponse characteristicsResponse) throws JSONException {
         JSONObject jsonObject = new JSONObject();
 
+
         jsonObject.put(Metadata.UUID, characteristicsResponse.getServiceUuid());
         jsonObject.put(Metadata.ID, characteristicsResponse.getServiceId());
 

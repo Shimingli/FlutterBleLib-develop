@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'device_details_bloc.dart';
 
 class DeviceDetailsBlocProvider extends InheritedWidget {
+
+
   final DeviceDetailsBloc _deviceDetailsBloc;
 
   DeviceDetailsBlocProvider({

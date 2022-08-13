@@ -51,6 +51,8 @@ class DevicesBloc {
     Fimber.d("Init devices bloc");
     bleDevices.clear();
 
+
+
     maybeCreateClient()
       .then((_) => _checkPermissions())
       .catchError((e) => Fimber.d("Permission check error", ex: e))

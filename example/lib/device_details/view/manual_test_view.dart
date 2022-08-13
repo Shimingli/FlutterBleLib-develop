@@ -15,7 +15,7 @@ class ManualTestView extends StatelessWidget {
         Expanded(
           flex: 3,
           child: SingleChildScrollView(
-            child: _createControlPanel(),
+            child: _createControlPanel(context),
           ),
         ),
         Expanded(
@@ -98,14 +98,14 @@ class ManualTestView extends StatelessWidget {
     _deviceDetailsBloc.fetchBluetoothState();
   }
 
-  Column _createControlPanel() {
+  Column _createControlPanel(BuildContext context) {
     return Column(
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 2.0),
           child: Row(
             children: <Widget>[
-              ButtonView("Connect", action: _connect),
+              ButtonView("Connect", action: _connect1(context)),
               ButtonView("Disconnect", action: _disconnect),
               ButtonView("Connected devices", action: _fetchConnectedDevices),
             ],
@@ -193,4 +193,6 @@ class ManualTestView extends StatelessWidget {
       ],
     );
   }
+
+  _connect1(BuildContext context) {}
 }

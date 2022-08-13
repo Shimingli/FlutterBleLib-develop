@@ -41,6 +41,7 @@ public class ScanningStreamHandler implements EventChannel.StreamHandler {
 
     synchronized public void onComplete() {
         if (scanResultsSink != null) {
+            System.out.println("  ScanningStreamHandler    onComplete ");
             scanResultsSink.endOfStream();
         }
     }

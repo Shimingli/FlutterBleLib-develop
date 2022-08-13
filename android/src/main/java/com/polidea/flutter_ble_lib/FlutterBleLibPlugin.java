@@ -143,7 +143,7 @@ public class FlutterBleLibPlugin implements MethodCallHandler {
                 }, new OnEventCallback<Integer>() {
                     @Override
                     public void onEvent(Integer restoreStateIdentifier) {
-                        restoreStateStreamHandler.onRestoreEvent(restoreStateIdentifier);
+                        StreamSubscription.onRestoreEvent(restoreStateIdentifier);
                     }
                 });
         result.success(null);

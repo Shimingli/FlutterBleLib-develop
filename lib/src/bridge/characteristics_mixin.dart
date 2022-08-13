@@ -290,9 +290,12 @@ mixin CharacteristicsMixin on FlutterBLE {
     return streamController.stream;
   }
 
+
+  ///  这个方法是入口
   CharacteristicWithValueAndTransactionId
       _parseCharacteristicWithValueWithTransactionIdResponse(
           Peripheral peripheral, String rawJsonValue) {
+
     Map<String, dynamic> rootObject = jsonDecode(rawJsonValue);
     Service service = Service.fromJson(rootObject, peripheral, _manager);
 

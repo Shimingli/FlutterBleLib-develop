@@ -4,7 +4,9 @@ import 'package:flutter_ble_lib/flutter_ble_lib.dart';
 
 import '_internal.dart';
 
+
 abstract class ManagerForPeripheral {
+
   Future<void> connectToPeripheral(
     String peripheralIdentifier, {
     required bool isAutoConnect,

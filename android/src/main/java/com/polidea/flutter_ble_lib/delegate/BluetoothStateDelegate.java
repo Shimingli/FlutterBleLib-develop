@@ -23,6 +23,7 @@ public class BluetoothStateDelegate extends CallDelegate {
             MethodName.GET_STATE);
 
     private BleAdapter bleAdapter;
+
     private BleErrorJsonConverter bleErrorJsonConverter = new BleErrorJsonConverter();
 
     public BluetoothStateDelegate(BleAdapter bleAdapter) {

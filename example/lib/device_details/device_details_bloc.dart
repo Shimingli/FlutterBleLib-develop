@@ -33,9 +33,9 @@ class DeviceDetailsBloc {
   late Logger logError;
 
   DeviceDetailsBloc({
-    DeviceRepository? deviceRepository, 
+    DeviceRepository? deviceRepository,
     BleManager? bleManager
-  }) 
+  })
   : _deviceRepository = deviceRepository ?? DeviceRepository(),
     _bleManager = bleManager ?? BleManager(),
     _connectionStateController =
@@ -44,6 +44,7 @@ class DeviceDetailsBloc {
       ),
     _logsController = PublishSubject<List<DebugLog>>() {
     _bleDevice = _deviceRepository.pickedDevice.value!;
+
 
     log = (text) {
       var now = DateTime.now();
@@ -147,8 +148,8 @@ class DeviceDetailsBloc {
 
   void monitorCharacteristicForPeripheral() {
     _clearLogs();
-      PeripheralTestOperations(_bleManager, _bleDevice.peripheral, log, logError)
-          .monitorCharacteristicForPeripheral();
+    PeripheralTestOperations(_bleManager, _bleDevice.peripheral, log, logError)
+        .monitorCharacteristicForPeripheral();
   }
 
   void monitorCharacteristicForService() {
@@ -184,6 +185,7 @@ class DeviceDetailsBloc {
   Future<void> connect() async {
     _clearLogs();
     var peripheral = _bleDevice.peripheral;
+
 
     peripheral
         .observeConnectionState(

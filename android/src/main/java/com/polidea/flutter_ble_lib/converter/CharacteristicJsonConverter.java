@@ -31,6 +31,7 @@ public class CharacteristicJsonConverter implements JsonConverter<Characteristic
         return toJsonArray(characteristics).toString();
     }
 
+
     public JSONArray toJsonArray(List<Characteristic> characteristics) throws JSONException {
         JSONArray jsonArray = new JSONArray();
         for (Characteristic characteristic : characteristics) {

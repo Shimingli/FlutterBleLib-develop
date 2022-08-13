@@ -5,7 +5,6 @@ abstract class _ServiceMetadata {
   static const String id = "serviceId";
 }
 
-/// A collection of [Characteristic]s and associated behaviors.
 class Service extends InternalService {
   /// [Peripheral] containing this service.
   Peripheral peripheral;
